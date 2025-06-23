@@ -24,8 +24,8 @@
     }
 
     .alert-banner {
-      background-color: #ffeb3b; /* bright yellow */
-      color: #b71c1c;            /* deep red for contrast */
+      background-color: #ffeb3b;
+      color: #b71c1c;
       width: 100%;
       text-align: center;
       font-size: 1.2rem;
@@ -115,22 +115,34 @@
     }
 
     #language-selector {
-      position: absolute;
-      top: 15px;
+      position: fixed;
+      top: 20px;
       left: 20px;
-      z-index: 1000;
+      z-index: 10001;
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     #language-selector select {
       font-family: 'Anton', sans-serif;
-      font-size: 1rem;
-      padding: 6px 10px;
+      font-size: 1.1rem;
+      padding: 8px 14px;
       border-radius: 4px;
       border: none;
       background: #fff;
       color: #b71c1c;
       text-transform: uppercase;
       cursor: pointer;
+    }
+
+    .lang-icon {
+      font-size: 1.2rem;
+      color: #b71c1c;
     }
   </style>
 </head>
@@ -140,6 +152,7 @@
   </div>
 
   <div id="language-selector">
+    <span class="lang-icon">🌐</span>
     <select id="langSelect">
       <option value="en">EN</option>
       <option value="es">ES</option>
@@ -163,8 +176,6 @@
   </div>
 
   <button id="joinProtestBtn">I will join the protest!</button>
-
-  <footer>Powered by solidarity ✊</footer>
 
   <!-- Confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -259,4 +270,5 @@
   </script>
 </body>
 </html>
+
 
