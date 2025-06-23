@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>June 28 Protest - Support Migrant Workers</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+    body {
+      margin: 0;
+      background: #b71c1c;
+      color: #fff;
+      font-family: 'Anton', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 40px 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1, h2, h3, p {
+      text-shadow: 1px 1px 3px #400000;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 0.4em 0 0.2em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1em;
+    }
+
+    p {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin-bottom: 2em;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2em;
+    }
+
+    button {
+      background: #fff;
+      color: #b71c1c;
+      font-family: 'Anton', sans-serif;
+      font-size: 1.3rem;
+      padding: 1em 2em;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px #800000;
+      text-transform: uppercase;
+    }
+
+    button:active {
+      box-shadow: none;
+      transform: translateY(3px);
+    }
+
+    button:hover {
+      background: #ffeaea;
+      color: #800000;
+    }
+
+    #joinProtestBtn {
+      font-size: 1.7rem;
+      padding: 1.2em 3em;
+      min-width: 320px;
+      margin-top: 20px;
+      box-shadow: 0 6px #7f0000;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #ffdada;
+    }
+
+    #language-selector {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      z-index: 1000;
+    }
+
+    #language-selector select {
+      font-family: 'Anton', sans-serif;
+      font-size: 1rem;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: none;
+      background: #fff;
+      color: #b71c1c;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="language-selector">
+    <select id="langSelect">
+      <option value="en">EN</option>
+      <option value="es">ES</option>
+      <option value="pt">PT</option>
+    </select>
+  </div>
+
+  <h1 id="title">PROTEST JUNE 28</h1>
+  <h2 id="location">Gordon's Square</h2>
+  <h3 id="time">12 PM · Stand with Migrant Workers</h3>
+
+  <p id="description">
+    The workers are organizing — but they need <strong>our</strong> support.<br />
+    Bidvest, Sodexo, and UCL are exploiting migrant workers through outsourcing.<br />
+    Join us to demand justice, dignity, and real change.
+  </p>
+
+  <div class="buttons">
+    <button id="petitionBtn">Sign the Petition</button>
+    <button id="iwgbBtn">Visit IWGB Website</button>
+  </div>
+
+  <button id="joinProtestBtn">I will join the protest!</button>
+
+  <footer>Powered by solidarity ✊</footer>
+
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    const translations = {
+      en: {
+        title: "PROTEST JUNE 28",
+        location: "Gordon's Square",
+        time: "12 PM · Stand with Migrant Workers",
+        description: `The workers are organizing — but they need <strong>our</strong> support.<br />
+          Bidvest, Sodexo, and UCL are exploiting migrant workers through outsourcing.<br />
+          Join us to demand justice, dignity, and real change.`,
+        petitionBtn: "Sign the Petition",
+        iwgbBtn: "Visit IWGB Website",
+        joinProtestBtn: "I will join the protest!"
+      },
+      es: {
+        title: "PROTESTA 28 DE JUNIO",
+        location: "Gordon's Square",
+        time: "12 PM · Apoya a lxs Trabajadorxs Migrantes",
+        description: `Lxs trabajadorxs se están organizando — pero necesitan <strong>nuestro</strong> apoyo.<br />
+          Bidvest, Sodexo y UCL están explotando a trabajadorxs migrantes mediante la subcontratación.<br />
+          Únete para exigir justicia, dignidad y un cambio real.`,
+        petitionBtn: "Firma la Petición",
+        iwgbBtn: "Visita el Sitio de IWGB",
+        joinProtestBtn: "¡Me uniré a la protesta!"
+      },
+      pt: {
+        title: "PROTESTO 28 DE JUNHO",
+        location: "Praça de Gordon",
+        time: "12h · Apoie Trabalhadores Migrantes",
+        description: `Os trabalhadores estão se organizando — mas precisam do <strong>nosso</strong> apoio.<br />
+          Bidvest, Sodexo e UCL estão explorando trabalhadores migrantes por meio da terceirização.<br />
+          Junte-se a nós para exigir justiça, dignidade e mudança real.`,
+        petitionBtn: "Assinar Petição",
+        iwgbBtn: "Visite o Site da IWGB",
+        joinProtestBtn: "Eu irei ao protesto!"
+      }
+    };
+
+    const langSelect = document.getElementById('langSelect');
+    langSelect.addEventListener('change', () => {
+      const lang = langSelect.value;
+      const t = translations[lang];
+      document.getElementById('title').innerHTML = t.title;
+      document.getElementById('location').innerHTML = t.location;
+      document.getElementById('time').innerHTML = t.time;
+      document.getElementById('description').innerHTML = t.description;
+      document.getElementById('petitionBtn').textContent = t.petitionBtn;
+      document.getElementById('iwgbBtn').textContent = t.iwgbBtn;
+      document.getElementById('joinProtestBtn').textContent = t.joinProtestBtn;
+    });
+
+    document.getElementById('petitionBtn').onclick = () => {
+      window.open('https://actionnetwork.org/petitions/ucl-end-outsourcing-for-good', '_blank');
+    };
+
+    document.getElementById('iwgbBtn').onclick = () => {
+      window.open('https://iwgb.org.uk', '_blank');
+    };
+
+    const joinBtn = document.getElementById('joinProtestBtn');
+    joinBtn.addEventListener('click', () => {
+      const duration = 4000;
+      const end = Date.now() + duration;
+
+      const confettiSettings = {
+        startVelocity: 30,
+        spread: 360,
+        ticks: 60,
+        zIndex: 9999,
+        particleCount: 5
+      };
+
+      const interval = setInterval(function () {
+        if (Date.now() > end) {
+          clearInterval(interval);
+        }
+        confetti({
+          ...confettiSettings,
+          origin: {
+            x: Math.random(),
+            y: Math.random() - 0.2
+          }
+        });
+      }, 100);
+
+      joinBtn.disabled = true;
+      joinBtn.textContent = translations[langSelect.value].joinProtestBtn + " ✅";
+    });
+  </script>
+</body>
+</html>
